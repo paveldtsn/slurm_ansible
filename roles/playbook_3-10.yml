@@ -1,0 +1,14 @@
+##################################
+# LEMP Playbook for 3.10 practice#
+##################################
+---
+- hosts: "all" # применяем команды ко всем хостам из inventory
+  become: true # становимся привилегированным пользователем
+  roles: 
+  - nginx_practice
+  
+  tasks:
+  - name: "Reload nginx"
+    ansible.builtin.service:
+      name: "nginx"
+      state: "reloaded"
