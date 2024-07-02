@@ -1,0 +1,65 @@
+#lemp
+vagrant status
+vagrant init ubuntu/focal64
+vagrant up
+vagrant status
+vagrant ssh default
+vagrant destroy
+
+
+#+NGINX
+sudo apt -y update
+sudo apt install -y nginx
+cd "/c/Users/Pavel/OneDrive/SLURM/Ansible/ansible_course/1.lemp/one-page_site"
+Vagrant upload .\index_files /var/www/html/index_files
+Vagrant upload index.html /var/www/html/index.html
+
+#+MYSQL
+
+sudo apt install -y mysql-server
+sudo systemctl --type=service
+sudo mysql_secure_installation
+sydo mysql
+ SELECT user, plugin FROM mysql.user;
+ ALTER USER 'root'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY 'password';
+
+ #+PHP at port 81:8081
+sudo apt install -y php-fpm php-mysql
+php --version
+ls -la /var/run/php/
+sudo vim /etc/nginx/sites-available/php_test.conf
+sudo ln -s /etc/nginx/sites-available/php_test.conf /etc/nginx/sites-enabled/php_test
+ls -la /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo nginx -s reload
+cd /var/www/
+sudo mkdir php-test
+sudo chown vagrant:vagrant php-test
+cd php-test/
+vim index.php
+127.0.0.1 php-test.com to hosts file
+
+vagrant upload .\test-connection.php /var/www/php-test/
+curl "php-test.com:8081/test-connection.php"
+
+
+#2.lemp-ansble
+
+vagrant ssh controlnode
+
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt install ansible -y
+ansible --version
+#create hosts.ini file so it will appear in /home/vagrant/ansible
+ansible all -i hosts.ini -m ping --ask-pass
+
+
+
+
+практика 3.10
+запускаю оба коннечусь
+ssh s065818@sbox.slurm.io
+eca7b5f5
+ssh node-1.s065818
+ssh node-2.s065818
+sudo -i
