@@ -11,7 +11,7 @@ config.vm.define "controlnode" do |controlnode|
   controlnode.vm.box = "ubuntu/focal64"
   controlnode.vm.hostname = "controlnode"
   controlnode.vm.network "private_network", ip: "192.168.50.4"
-  controlnode.vm.synced_folder "roles","/home/vagrant/ansible"
+  controlnode.vm.synced_folder "distr","/home/vagrant/ansible"
   controlnode.vm.provision "shell", inline: <<-SHELL
     sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/#g' /etc/ssh/sshd_config
     service ssh restart
