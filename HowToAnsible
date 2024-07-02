@@ -33,26 +33,25 @@ ls -la /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo nginx -s reload
 cd /var/www/
-sudo mkdir php-test
-sudo chown vagrant:vagrant php-test
-cd php-test/
+sudo mkdir php_test
+sudo chown vagrant:vagrant php_test
+cd php_test/
 vim index.php
 127.0.0.1 php-test.com to hosts file
 
-vagrant upload .\test-connection.php /var/www/php-test/
+vagrant upload .\test-connection.php /var/www/php_test/
 curl "php-test.com:8081/test-connection.php"
 
 
 #2.lemp-ansble
 
 vagrant ssh controlnode
-
 sudo apt-add-repository ppa:ansible/ansible
-sudo apt install ansible -y
+sudo apt install -y ansible sshpass
 ansible --version
 #create hosts.ini file so it will appear in /home/vagrant/ansible
+#нужно ssh-нуться почему-то на таргет из списка хостов для сохранения отпечатка.
 ansible all -i hosts.ini -m ping --ask-pass
-
 
 
 

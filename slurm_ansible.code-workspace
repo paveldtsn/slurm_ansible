@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../../SLURM/Docker"
+		},
+		{
+			"path": "../../../SLURM/Ansible"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {}
+}
