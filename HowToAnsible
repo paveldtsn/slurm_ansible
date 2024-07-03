@@ -67,6 +67,8 @@ sudo -i
 #git preparation
 ssh-keygen -t rsa -b 4096 -C "paveldtsn@gmail.com" -f ~/.ssh/homie_vscode_github
 ssh-add ~/.ssh/homie_vscode_github
+ssh -T git@github.com
+
 git config --global user.email "paveldtsn@gmail.com"
 git config --global user.name "paveldtsn"
 
