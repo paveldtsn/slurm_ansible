@@ -45,8 +45,8 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "server_centos" do |server_centos|
-    server_centos.vm.box = "holms/centos7"
-    server_centos.vm.box_url = "https://github.com/holms/vagrant-centos7-box/releases/download/7.1.1503.001/CentOS-7.1.1503-x86_64-netboot.box"
+    server_centos.vm.box = "centos/7"
+    #server_centos.vm.box_url = "https://github.com/holms/vagrant-centos7-box/releases/download/7.1.1503.001/CentOS-7.1.1503-x86_64-netboot-v02.box"
     server_centos.vm.hostname = "centos"
     server_centos.vm.network "private_network", ip: "192.168.56.42"
     server_centos.vm.provision "shell", inline: <<-SHELL
@@ -56,8 +56,8 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "server_centos_python" do |server_centos_python|
-    server_centos_python.vm.box = "holms/centos7"
-    server_centos_python.vm.box_url = "https://github.com/holms/vagrant-centos7-box/releases/download/7.1.1503.001/CentOS-7.1.1503-x86_64-netboot.box"
+    server_centos_python.vm.box = "centos/7"
+    #server_centos_python.vm.box_url = "https://github.com/holms/vagrant-centos7-box/releases/download/7.1.1503.001/CentOS-7.1.1503-x86_64-netboot-v02.box"
     server_centos_python.vm.hostname = "centos"
     server_centos_python.vm.network "private_network", ip: "192.168.56.45"
     server_centos_python.vm.provision "shell", inline: <<-SHELL
