@@ -5,8 +5,8 @@ After=network.target
 [Service]
 Type=simple
 User=root
-WorkingDirectory=/app/public
-Environment=SECRET_KEY_BASE={{ secret_key_base }}
+WorkingDirectory=/home/vagrant/app
+Environment=SECRET_KEY_BASE=anystringactually
 Environment=RAILS_ENV=production
 Environment=RAILS_LOG_TO_STDOUT=1
 Environment=DB_HOST=127.0.0.1

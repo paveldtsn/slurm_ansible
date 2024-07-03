@@ -59,14 +59,37 @@
 #    key_file: "~/.ssh/id_rsa"
 #    accept_hostkey: true
 
-- name: Configure application bundle for nokogiri
-  command: /home/vagrant/app bundle config build.nokogiri --use-system-libraries
-  args:
-    chdir: /home/vagrant/app
-  become: yes
+#- name: Configure application bundle for nokogiri
+#  command: /home/vagrant/app bundle config build.nokogiri --use-system-libraries
+#  args:
+#    chdir: /home/vagrant/app
+#  become: yes
 
-- name: Install application bundle dependencies
-  command: /home/vagrant/app/bin bundle install --clean --no-cache --without development
+#- name: Install application bundle dependencies
+#  command: /home/vagrant/app/bin bundle install --clean --no-cache --without development
+#  args:
+#    chdir: /home/vagrant/app/bin
+#  become: yes
+
+- name: "Configure Bundler"
+  ansible.builtin.command: "bundle config build.nokogiri --use-system-libraries"
   args:
     chdir: /home/vagrant/app/bin
-  become: yes
+
+#- name: "Prepares application"
+#  ansible.builtin.command: "bundle install --clean --force --no-cache --without development"
+#  args:
+#  chdir: /home/vagrant/app/bin
+
+#- name: "Launch application" #deprecated
+#  ansible.builtin.command: "bundle exec rake db:migrate && bundle exec puma -b unix:///var/run/puma.sock -e $RAILS_ENV config.ru"
+#  args:
+#    chdir: /home/vagrant/app
+
+- name: "Create systemd file to autostart application"
+  ansible.builtin.template:
+    src: "xpaste.service.j2"
+    dest: "/etc/systemd/system/xpaste.service"
+  notify:
+    - "Reload systemd"
+    - "enable service and start application"

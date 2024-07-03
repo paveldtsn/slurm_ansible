@@ -11,13 +11,8 @@
 - name: "Application deployment"
   hosts: all
   become: true
-  #vars_files:
-  #  - secrets.yml
-  #  - main.yml
 
   roles:
   - nginx
   - postgres
   - dependencies
- # - ruby-app
- # - geerlingguy.nginx

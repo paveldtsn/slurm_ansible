@@ -1,5 +1,5 @@
 ---
-# vars file for postgresql
+# vars file for postgres
 db_user: "xpaste_user"
 db_name: "xpaste_db"
 db_password: "password"

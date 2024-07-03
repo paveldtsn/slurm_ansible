@@ -1,2 +1,11 @@
 ---
 # handlers file for dependencies
+- name: "Reload systemd"
+  ansible.builtin.systemd:
+    daemon_reload: true
+
+- name: "enable service and start application"
+  ansible.builtin.systemd:
+    name: "xpaste"
+    enabled: true
+    state: "started"
