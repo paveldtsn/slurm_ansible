@@ -1,0 +1,72 @@
+---
+- name: Install required system packages
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - gcc
+    - libxml2-devel
+    - ruby
+    - ruby-devel
+    - shared-mime-info
+  become: yes
+
+# Deletion of /home/vagrant/app directory
+# - name: Delete /home/vagrant/app directory if it exists
+#   file:
+#     path: /home/vagrant/app
+#     state: absent
+#   become: yes
+
+- name: Ensure /home/vagrant/app directory exists
+  file:
+    path: /home/vagrant/app
+    state: directory
+    owner: vagrant
+    group: vagrant
+    mode: '0755'
+  become: yes
+
+#- name: Check if application files need to be copied
+#  stat:
+#    path: /home/vagrant/app/.copied_flag
+#  register: copied_flag
+#  become: yes
+
+#- name: Copy application files from /home/vagrant/ansible/xpaste_app to /home/vagrant/app
+#  copy:
+#    src: /home/vagrant/ansible/xpaste_app/
+#    dest: /home/vagrant/app/
+#    owner: vagrant
+#    group: vagrant
+#    mode: '0755'
+#  when: not copied_flag.stat.exists
+#  become: yes
+
+#- name: Create copied flag file
+#  file:
+#    path: /home/vagrant/app/.copied_flag
+#    state: touch
+#    owner: vagrant
+#    group: vagrant
+#    mode: '0644'
+#  become: yes
+
+#- name: Or clone from git repo
+#  ansible.builtin.git:
+#    repo: "git@gitlab.slurm.io:edu/xpaste_practicum.git"
+#    dest: /home/vagrant/app
+#    key_file: "~/.ssh/id_rsa"
+#    accept_hostkey: true
+
+- name: Configure application bundle for nokogiri
+  command: /home/vagrant/app bundle config build.nokogiri --use-system-libraries
+  args:
+    chdir: /home/vagrant/app
+  become: yes
+
+- name: Install application bundle dependencies
+  command: /home/vagrant/app/bin bundle install --clean --no-cache --without development
+  args:
+    chdir: /home/vagrant/app/bin
+  become: yes

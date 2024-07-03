@@ -8,15 +8,16 @@
 # ansible-galaxy role install geerlingguy.nginx
 
 ---
-- name: "Installing xpaste application"
-  hosts: "application-servers"
+- name: "Application deployment"
+  hosts: all
   become: true
-  vars_files:
-    - secrets.yml
-    - main.yml
+  #vars_files:
+  #  - secrets.yml
+  #  - main.yml
 
   roles:
-  - postgresql
-  - ruby-app-role
-  - geerlingguy.nginx
-  - nginx_conf_change
+ #  - dependencies
+ # - nginx_conf_change
+   - postgres
+ # - ruby-app
+ # - geerlingguy.nginx

@@ -8,6 +8,9 @@
 		},
 		{
 			"path": ".."
+		},
+		{
+			"path": "../../../../Downloads/Ruby-app-Ansible-deploy-main"
 		}
 	],
 	"settings": {}

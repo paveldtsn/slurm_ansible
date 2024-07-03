@@ -74,3 +74,29 @@ git config --global user.name "paveldtsn"
 
 #теория 3.other
 новый фолдер новый vagrant
+
+
+
+#настоящая практика
+ssh -i "C:\Users\Pavel\.ssh\slurm_ssh_key" root@45.76.80.228 
+#centos 7
+ssh -i "C:\Users\Pavel\.ssh\slurm_ssh_key" root@45.76.95.174 
+#centos 9
+#создать vagrant пользователя и судо
+useradd -m -s /bin/bash vagrant
+passwd vagrant
+echo "vagrant ALL=(ALL) NOPASSWD:ALL" | sudo EDITOR='tee -a' visudo
+gem install bundler -v 1.16.2
+gem install nokogiri -v '1.8.2'
+
+sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/#g' /etc/ssh/sshd_config
+sudo apt update -y && sudo apt full-upgrade -y
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt install -y ansible sshpass python3
+ansible --version
+#create hosts.ini file so it will appear in /home/vagrant/ansible
+#нужно ssh-нуться почему-то на таргет из списка хостов для сохранения отпечатка.
+ansible all -i hosts.ini -m ping --ask-pass
+
+#На контрол ноде создать новюу роль 
+ansible-galaxy init dependencies

@@ -1,0 +1,10 @@
+---
+# vars file for postgresql
+db_user: "xpaste_user"
+db_name: "xpaste_db"
+db_password: "password"
+secret_key_base: "{{ secret_key }}"
+application_path: "/home/vagrant/app"
+
+vars_files:
+  - secrets.yml
