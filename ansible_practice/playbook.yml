@@ -16,8 +16,8 @@
   #  - main.yml
 
   roles:
- #  - dependencies
- # - nginx_conf_change
-   - postgres
+  - nginx
+  - postgres
+  - dependencies
  # - ruby-app
  # - geerlingguy.nginx
